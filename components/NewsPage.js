@@ -1,11 +1,17 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 
 const NewsPage = ({ imageuri, title, subtext }) => {
+    let date = new Date(subtext);
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    let publishedDate = year + "年" + month + "月" + day + "日"
+
   return (
     <View style={styles.box}>
       <View style={styles.fontBox}>
         <Text numberOfLines={2} style={styles.Text}>{title || "No Title"}</Text>
-        <Text style={styles.subText}>{subtext || "No Data"}</Text>
+        <Text style={styles.subText}>{publishedDate || "No Data"}</Text>
       </View>
       <View style={styles.imageBox}>
         <Image style={{ width: 100, height: 100 }} source={{ uri: imageuri || 'https://via.placeholder.com/100' }} />
@@ -36,7 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   subText: {
-    fontSize: 12,
-    color: "#FFFFFF",
+    fontSize: 12
   },
 });
