@@ -1,23 +1,16 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 
-const NewsPage = ({imageuri, title, subtext}) => {
-  return(
-      <View style={styles.box}>
-        <View style={styles.fontBox}>
-          <Text style={styles.Text}>
-            {title}
-          </Text>
-          <Text style={styles.subText}>
-            {subtext}
-          </Text>
-        </View>
-        <View style={styles.imageBox}>
-          <Image
-            style={{ width: 100, height: 100 }}
-            source={{ url: imageuri }}
-          />
-        </View>
+const NewsPage = ({ imageuri, title, subtext }) => {
+  return (
+    <View style={styles.box}>
+      <View style={styles.fontBox}>
+        <Text numberOfLines={2} style={styles.Text}>{title || "No Title"}</Text>
+        <Text style={styles.subText}>{subtext || "No Data"}</Text>
       </View>
+      <View style={styles.imageBox}>
+        <Image style={{ width: 100, height: 100 }} source={{ uri: imageuri || 'https://via.placeholder.com/100' }} />
+      </View>
+    </View>
   );
 };
 
@@ -35,7 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "steelblue",
     padding: 16,
-    justifyContent: "flex-between",
+    justifyContent: "space-between",
   },
   imageBox: {
     width: 100,
