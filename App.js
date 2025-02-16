@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 import NewsPage from "./components/NewsPage";
 import React, { useState, useEffect } from "react";
 import { NEWS_API_KEY } from "@env";
@@ -30,7 +30,7 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {console.log("Rendering with news:", news)} // newsの状態を確認
       <FlatList
         data={news}
@@ -46,7 +46,7 @@ export default function App() {
         }}
         keyExtractor={(_, index) => index.toString()}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
