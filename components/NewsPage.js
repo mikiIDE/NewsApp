@@ -26,13 +26,11 @@ const styles = StyleSheet.create({
   },
   fontBox: {
     flex: 1,
-    backgroundColor: "steelblue",
     padding: 16,
     justifyContent: "space-between",
   },
   imageBox: {
     width: 100,
-    backgroundColor: "powderblue",
   },
   Text: {
     fontSize: 16,

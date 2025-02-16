@@ -5,7 +5,6 @@ import { NEWS_API_KEY } from "@env";
 import axios from "axios";
 
 const URI = `https://newsapi.org/v2/everything?q=japan&language=jp&apiKey=${NEWS_API_KEY}`;
-
 export default function App() {
   const [news, setNews] = useState([]);
   useEffect(() => {
@@ -16,22 +15,8 @@ export default function App() {
   }, []);
   const getNews = async () => {
     try {
-      // URIに正しくAPIキーが展開されているか確認
-      console.log('Requesting URL:', URI);
-      
       const response = await axios.get(URI);
-      
-      // レスポンスのステータスとデータ構造を詳しく確認
-      console.log('Response status:', response.status);
-      console.log('Response data:', JSON.stringify(response.data, null, 2));
-      
-      if (response.data.status === 'ok' && Array.isArray(response.data.articles)) {
         setNews(response.data.articles);
-      } else {
-        // エラーメッセージがあれば表示
-        console.error('API Error:', response.data.message || 'Unknown error');
-        alert('API Error: ' + (response.data.message || 'Unknown error'));
-      }
     } catch (error) {
       if (error.response) {
         // APIからのエラーレスポンスの詳細を表示
