@@ -1,57 +1,19 @@
-import { FlatList, SafeAreaView, StyleSheet } from "react-native";
-import NewsPage from "./components/NewsPage";
-import React, { useState, useEffect } from "react";
-import { NEWS_API_KEY } from "@env";
-import axios from "axios";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import NewsScreen from './screens/NewsScreen';
+import DetailScreen from './screens/DetailScreen';
 
-const URI = `https://newsapi.org/v2/everything?q=japan&language=jp&apiKey=${NEWS_API_KEY}`;
+
+const Stack = createNativeStackNavigator();
+
 export default function App() {
-  const [news, setNews] = useState([]);
-  useEffect(() => {
-    console.log("useEffect running..."); // useEffectが実行されているか確認
-    getNews().catch((error) => {
-      console.error("Error in useEffect:", error);
-    });
-  }, []);
-  const getNews = async () => {
-    try {
-      const response = await axios.get(URI);
-        setNews(response.data.articles);
-    } catch (error) {
-      if (error.response) {
-        // APIからのエラーレスポンスの詳細を表示
-        console.error('API Error Response:', error.response.data);
-        alert('API Error: ' + (error.response.data.message || error.message));
-      } else {
-        console.error('Request Error:', error.message);
-        alert('Request Error: ' + error.message);
-      }
-    }
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
-      {console.log("Rendering with news:", news)} // newsの状態を確認
-      <FlatList
-        data={news}
-        renderItem={({ item }) => {
-          return (
-            <NewsPage
-              imageuri={item.urlToImage}
-              title={item.title}
-              subtext={item.publishedAt}
-            />
-          );
-        }}
-        keyExtractor={(_, index) => index.toString()}
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="ニュース" component={NewsScreen} />
+        <Stack.Screen name="詳細ページ" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-});
