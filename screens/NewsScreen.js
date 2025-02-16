@@ -5,7 +5,7 @@ import { NEWS_API_KEY } from "@env";
 import axios from "axios";
 
 const URI = `https://newsapi.org/v2/everything?q=japan&language=jp&apiKey=${NEWS_API_KEY}`;
-export default function NewsScreen() {
+export default function NewsScreen({ navigation }) {
   const [news, setNews] = useState([]);
   useEffect(() => {
     console.log("useEffect running..."); // useEffectが実行されているか確認
@@ -40,6 +40,7 @@ export default function NewsScreen() {
               imageuri={item.urlToImage}
               title={item.title}
               subtext={item.publishedAt}
+              onPress={() => navigation.navigate("詳細ページ")}
             />
           );
         }}

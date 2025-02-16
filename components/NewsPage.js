@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-const NewsPage = ({ imageuri, title, subtext }) => {
+const NewsPage = ({ imageuri, title, subtext, onPress }) => {
     let date = new Date(subtext);
     let year = date.getFullYear();
     let month = date.getMonth();
@@ -8,7 +8,7 @@ const NewsPage = ({ imageuri, title, subtext }) => {
     let publishedDate = year + "年" + month + "月" + day + "日"
 
   return (
-    <View style={styles.box}>
+    <TouchableOpacity style={styles.box} onPress={onPress}>
       <View style={styles.fontBox}>
         <Text numberOfLines={2} style={styles.Text}>{title || "No Title"}</Text>
         <Text style={styles.subText}>{publishedDate || "No Data"}</Text>
@@ -16,7 +16,7 @@ const NewsPage = ({ imageuri, title, subtext }) => {
       <View style={styles.imageBox}>
         <Image style={{ width: 100, height: 100 }} source={{ uri: imageuri || 'https://via.placeholder.com/100' }} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
