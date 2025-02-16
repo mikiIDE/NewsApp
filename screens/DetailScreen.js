@@ -1,12 +1,22 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
+import { WebView } from "react-native-webview" 
+import Constants from "expo-constants"
 
-const DetailScreen = () => {
+export default function DetailScreen(props) {
+    const { route } = props
+    const { article } = route.params
     return (
-        <View>
-            <Text>詳細画面</Text>
-        </View>
+        <WebView
+        style={styles.container}
+        source={{ uri: article.url }}
+        />
     )
 }
 
-export default DetailScreen
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        marginTop: Constants.statusBarHeight
+    }
+})

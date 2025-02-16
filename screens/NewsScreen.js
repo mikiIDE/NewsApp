@@ -40,7 +40,8 @@ export default function NewsScreen({ navigation }) {
               imageuri={item.urlToImage}
               title={item.title}
               subtext={item.publishedAt}
-              onPress={() => navigation.navigate("詳細ページ")}
+              onPress={() => navigation.navigate("詳細ページ", { article: item })}
+            // onPressの第１引数はnameで飛ぶ場所を指定、第２引数は必要な情報を設定する
             />
           );
         }}
