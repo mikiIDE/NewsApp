@@ -35,7 +35,6 @@ export default function App() {
       <FlatList
         data={news}
         renderItem={({ item }) => {
-          console.log("rendering item:", item);
           return (
             <NewsPage
               imageuri={item.urlToImage}
